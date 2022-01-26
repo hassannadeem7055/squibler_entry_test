@@ -1,0 +1,25 @@
+<h1>{{ pagetitle }}</h1>
+<!-- <br><mat-progress-bar [mode]="isConnected"></mat-progress-bar><br> -->
+<!-- CRUD ops -->
+<div>
+  <button (click)="CreateSection()">Create Section</button>
+  <input #sectionInputTextBox (keyup)="getFormInput(sectionInputTextBox.value)">
+  <button (click)="DeleteSection()">Delete Section</button>
+  <button (click)="UpdateSection()">Update Section</button>
+</div>
+
+<div class="sections">
+  <ul>
+    <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: list }"></ng-container>
+  </ul>
+
+  <ng-template #recursiveListTmpl let-list="list">
+    <li *ngFor="let item of list" (click)="onSelect($event)" id={{item.section_uuid}}
+      [ngClass]="{'selectedsectionheader': selected_uuid === item.section_uuid, 'sectionheader':selected_uuid !== item.section_uuid}">
+      {{ item.section_name }}
+      <ul *ngIf="item.subsections.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: item.subsections }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+</div>

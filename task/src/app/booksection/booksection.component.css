@@ -1,0 +1,10 @@
+.sectionheader:hover {
+    border-left: thick double #aaaaaa;
+    padding: 1px;
+  }
+.selectedsectionheader {
+    border: thick double #353535;
+}
+ul {
+    list-style-type: none;
+  }
